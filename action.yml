@@ -14,6 +14,10 @@ inputs:
     description: name of config to use, or path to config file
     default: conventional
 
+  include_sha:
+    description: Include commit SHA in report
+    default: false
+
 outputs:
   report:
     description: a JSON object with the full `commitlint` report data
