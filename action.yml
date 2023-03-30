@@ -24,4 +24,4 @@ outputs:
 
 runs:
   using: docker
-  image: docker://ghcr.io/ahmadnassri/action-commit-lint:2.0.12
+  image: docker://ghcr.io/twang817/action-commit-lint:1
