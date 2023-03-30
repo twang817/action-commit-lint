@@ -31,7 +31,6 @@ if (!process.env.INPUT_TOKEN && process.env['INPUT_GITHUB-TOKEN']) {
 const inputs = {
   token: core.getInput('token', { required: true }),
   config: core.getInput('config', { required: true }),
-  include_sha: core.getInput('include_sha', { required: false }) || false
 }
 
 // extract the pull_request

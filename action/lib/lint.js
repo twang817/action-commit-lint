@@ -12,7 +12,7 @@ module.exports = async function ({ commits, config = 'conventional' }) {
   const rawOpts = parserPreset ? { parserOpts: parserPreset.parserOpts } : {}
 
   let fail = false
-  const report = {}
+  const report = []
 
   core.info(`config: ${config}`)
 
@@ -23,6 +23,7 @@ module.exports = async function ({ commits, config = 'conventional' }) {
     core.info(`${sha.slice(-7)}: ${message}`)
 
     const result = await lint.default(message, rules, rawOpts)
+    result.sha = sha
 
     if (result.errors.length > 0) {
       fail = true
@@ -33,12 +34,7 @@ module.exports = async function ({ commits, config = 'conventional' }) {
       result.warnings.map(warning => core.warning(`⚠ ${warning.message}`))
     }
 
-    report[sha] = result
-
-    if (!config.inclue_sha) {
-      return Object.values(report);
-    }
-    return report
+    report.push(result)
   }
 
   core.setOutput('report', report)
